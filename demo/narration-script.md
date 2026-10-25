@@ -1,10 +1,12 @@
 # Narration script: Energy Not Enemy, The Working Model
 
-Presentation walkthrough, target length about two and a half minutes.
-Plain language throughout. No voiceover was recorded for this cut: this
-environment has no speech synthesis available, so the video carries these
-exact words as on-screen captions, section by section, and this script is
-the record the voice track should be recorded from.
+Presentation walkthrough, final cut 3 minutes 14 seconds.
+Plain language throughout. The voice track in the shipped video was
+recorded from these words in a separate finishing pass (this build
+environment has no speech synthesis), placed line by line at each
+scene's appearance, with the same words carried as on-screen captions.
+The spoken lines for section four follow the fallback text below the
+cut note, matching what the recording could actually show.
 
 Cut note: in the shipped recording, section four shows the bundled
 Lewisville year's analysis instead of the Phoenix fetch described in

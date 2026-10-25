@@ -66,9 +66,13 @@ sliced by month and day. Output is written to `results/`.
 the model being used, as a presentation a first-time viewer can follow.
 It walks the parts, the day shift phase by phase, the night shift and the
 water coming home, the full-year analysis, and the totals, closing on the
-book. It carries the narration as on-screen captions because this build
-environment has no speech synthesis; the full narration script is
-`demo/narration-script.md`, ready to be read aloud for the voice track.
+book. The final cut (3 minutes 14 seconds) carries the narration as a
+recorded voice track, placed line by line at the moment each scene
+appears, with the same words as on-screen captions; the narration script
+is `demo/narration-script.md`. The voice was recorded and the cut
+assembled in a separate finishing pass (`demo/capture-voiced.mjs`,
+`demo/stills.mjs`) because the build environment has no speech
+synthesis.
 One honest note about the city scene: during the recording, a live fetch
 of Phoenix weather was attempted first, and the recording browser could
 not reach the public internet at all (even a direct navigation to a
@@ -174,8 +178,13 @@ generate about 13 kWh each.
    areas and duties; individual casing dimensions are display defaults
    (A-25), labeled as such in the part readouts. This is not a
    fabrication drawing set.
-10. The demo video has captions and a narration script but no recorded
-    voice track, because the build environment has no speech synthesis.
+10. The demo video's closing scenes (city picker, full-year analysis,
+    claims table, the book) are real page screenshots presented with a
+    slow zoom and burned-in captions, not screencast footage: the
+    recording browser's screencast stalls once the analysis view is on
+    screen, which main-side verification reproduced in both the original
+    and the voiced capture before switching methods. Nothing in the
+    closing scenes is mocked up; every frame is the deployed page.
 11. The demo video's city segment shows the bundled city rather than a
     live-fetched one, because the recording browser had no route to the
     public internet. The page's live fetch is unaffected; it was verified

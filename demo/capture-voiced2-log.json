@@ -1,0 +1,109 @@
+{
+  "frames": 772,
+  "duration_s": 179.1,
+  "marks": [
+    {
+      "id": "L01",
+      "offset_s": 0
+    },
+    {
+      "id": "L02",
+      "offset_s": 12.358
+    },
+    {
+      "id": "L03",
+      "offset_s": 19.481
+    },
+    {
+      "id": "L04",
+      "offset_s": 28.548
+    },
+    {
+      "id": "L05",
+      "offset_s": 36.572
+    },
+    {
+      "id": "L06",
+      "offset_s": 46.714
+    },
+    {
+      "id": "L07",
+      "offset_s": 54.061
+    },
+    {
+      "id": "L08",
+      "offset_s": 61.958
+    },
+    {
+      "id": "L09",
+      "offset_s": 72.06
+    },
+    {
+      "id": "L10",
+      "offset_s": 82.589
+    },
+    {
+      "id": "L11",
+      "offset_s": 92.383
+    },
+    {
+      "id": "L12",
+      "offset_s": 102.318
+    },
+    {
+      "id": "L13",
+      "offset_s": 113.184
+    },
+    {
+      "id": "L14",
+      "offset_s": 121.114
+    },
+    {
+      "id": "L15",
+      "offset_s": 128.589
+    },
+    {
+      "id": "L16",
+      "offset_s": 139.56
+    },
+    {
+      "id": "L17",
+      "offset_s": 140.494
+    },
+    {
+      "id": "L18",
+      "offset_s": 140.494
+    },
+    {
+      "id": "L19",
+      "offset_s": 140.494
+    }
+  ],
+  "log": [
+    "page ready",
+    "mark L01 @ 0.00s",
+    "mark L02 @ 12.36s",
+    "mark L03 @ 19.48s",
+    "mark L04 @ 28.55s",
+    "mark L05 @ 36.57s",
+    "mark L06 @ 46.71s",
+    "mark L07 @ 54.06s",
+    "best day: 2024-06-14",
+    "mark L08 @ 61.96s",
+    "mark L09 @ 72.06s",
+    "mark L10 @ 82.59s",
+    "mark L11 @ 92.38s",
+    "mark L12 @ 102.32s",
+    "mark L13 @ 113.18s",
+    "mark L14 @ 121.11s",
+    "mark L15 @ 128.59s",
+    "mark L16 @ 139.56s",
+    "mark L17 @ 140.49s",
+    "mark L18 @ 140.49s",
+    "mark L19 @ 140.49s",
+    "frames captured: 772",
+    "video duration: 179.1 s",
+    "wrote /home/hatch/workspace/energy-not-enemy-model/demo/energy-not-enemy-working-model-demo-voiced2.mp4"
+  ],
+  "out": "/home/hatch/workspace/energy-not-enemy-model/demo/energy-not-enemy-working-model-demo-voiced2.mp4"
+}

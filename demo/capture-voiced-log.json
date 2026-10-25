@@ -1,0 +1,109 @@
+{
+  "frames": 770,
+  "duration_s": 177.2,
+  "marks": [
+    {
+      "id": "L01",
+      "offset_s": 0
+    },
+    {
+      "id": "L02",
+      "offset_s": 12.23
+    },
+    {
+      "id": "L03",
+      "offset_s": 19.491
+    },
+    {
+      "id": "L04",
+      "offset_s": 28.252
+    },
+    {
+      "id": "L05",
+      "offset_s": 36.402
+    },
+    {
+      "id": "L06",
+      "offset_s": 46.46
+    },
+    {
+      "id": "L07",
+      "offset_s": 53.96
+    },
+    {
+      "id": "L08",
+      "offset_s": 61.617
+    },
+    {
+      "id": "L09",
+      "offset_s": 71.896
+    },
+    {
+      "id": "L10",
+      "offset_s": 82.229
+    },
+    {
+      "id": "L11",
+      "offset_s": 92.122
+    },
+    {
+      "id": "L12",
+      "offset_s": 102.105
+    },
+    {
+      "id": "L13",
+      "offset_s": 112.854
+    },
+    {
+      "id": "L14",
+      "offset_s": 120.899
+    },
+    {
+      "id": "L15",
+      "offset_s": 128.213
+    },
+    {
+      "id": "L16",
+      "offset_s": 139.13
+    },
+    {
+      "id": "L17",
+      "offset_s": 140.358
+    },
+    {
+      "id": "L18",
+      "offset_s": 140.358
+    },
+    {
+      "id": "L19",
+      "offset_s": 180.146
+    }
+  ],
+  "log": [
+    "page ready",
+    "mark L01 @ 0.00s",
+    "mark L02 @ 12.23s",
+    "mark L03 @ 19.49s",
+    "mark L04 @ 28.25s",
+    "mark L05 @ 36.40s",
+    "mark L06 @ 46.46s",
+    "mark L07 @ 53.96s",
+    "best day: 2024-06-14",
+    "mark L08 @ 61.62s",
+    "mark L09 @ 71.90s",
+    "mark L10 @ 82.23s",
+    "mark L11 @ 92.12s",
+    "mark L12 @ 102.10s",
+    "mark L13 @ 112.85s",
+    "mark L14 @ 120.90s",
+    "mark L15 @ 128.21s",
+    "mark L16 @ 139.13s",
+    "mark L17 @ 140.36s",
+    "mark L18 @ 140.36s",
+    "mark L19 @ 180.15s",
+    "frames captured: 770",
+    "video duration: 177.2 s",
+    "wrote /home/hatch/workspace/energy-not-enemy-model/demo/energy-not-enemy-working-model-demo-voiced.mp4"
+  ],
+  "out": "/home/hatch/workspace/energy-not-enemy-model/demo/energy-not-enemy-working-model-demo-voiced.mp4"
+}
