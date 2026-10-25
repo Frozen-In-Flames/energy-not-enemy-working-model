@@ -1,0 +1,13 @@
+{
+  "frames": 583,
+  "duration_s": 130.3,
+  "log": [
+    "page ready",
+    "best day: 2024-06-14",
+    "Phoenix live load failed, using fallback: eval failed: TypeError: Failed to fetch\n    at file:///home/hatch/workspace/energy-not-enemy-model/docs/weather.js:107:14",
+    "frames captured: 583",
+    "video duration: 130.3 s",
+    "wrote /home/hatch/workspace/energy-not-enemy-model/demo/energy-not-enemy-working-model-demo.mp4"
+  ],
+  "out": "/home/hatch/workspace/energy-not-enemy-model/demo/energy-not-enemy-working-model-demo.mp4"
+}

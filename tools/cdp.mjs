@@ -13,12 +13,18 @@ export function serve(root, port) {
 }
 
 export async function launch(port) {
+  // This VM reaches the internet only through an egress proxy named in the
+  // environment. Chromium does not read those variables by itself, so pass
+  // the proxy through when present (value read at runtime, never stored).
+  const proxy = process.env.https_proxy || process.env.HTTPS_PROXY
+    || process.env.http_proxy || '';
   const proc = spawn(CHROME, [
     '--headless=new', '--no-sandbox', '--disable-gpu-sandbox',
     '--use-angle=swiftshader', '--enable-unsafe-swiftshader',
     '--disable-features=LocalNetworkAccessChecks,BlockInsecurePrivateNetworkRequests',
+    ...(proxy ? ['--proxy-server=' + proxy] : []),
     '--remote-debugging-port=' + port, '--remote-debugging-address=127.0.0.1',
-    '--window-size=1280,1500',
+    '--window-size=' + (process.env.CHROME_WINDOW || '1280,1500'),
     ...(process.env.CHROME_EXTRA_ARGS ? process.env.CHROME_EXTRA_ARGS.split(' ') : []),
     'about:blank'
   ], { stdio: 'ignore' });
