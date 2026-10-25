@@ -1,0 +1,88 @@
+{
+  "claims": [
+    {
+      "id": "C-01",
+      "verdict": "AGREE",
+      "book": "1 m2 lens, DNI 1000, C=60, eta_opt 0.75 -> 750 W on 1/60 m2 = 45,000 W/m2",
+      "simulated": "1000 x 1 x 0.75 = 750 W; 750 / (1/60) = 45,000 W/m2 (direct optical chain, all implementations)",
+      "detail": "Arithmetic identity inside the model's optical stage."
+    },
+    {
+      "id": "C-02",
+      "verdict": "AGREE",
+      "book": "Rankine at 4 MPa / 400 C / 40 C condenser: 36.2% ideal, 27.1% realistic, 19.8% pessimistic",
+      "simulated": "36.7% ideal, 27.5% realistic, 20.0% pessimistic",
+      "detail": "Stated tolerance plus or minus 1.0 percentage point; worst deviation 0.53 points."
+    },
+    {
+      "id": "C-03",
+      "verdict": "PARTIAL",
+      "book": "Reference design day: 220 kWh on aperture -> 27.6 kWh net (92% of 30 kWh demand), passive condenser",
+      "simulated": "Cold-start day 12.12 kWh net; continuous-operation day 3 24.20 kWh net (87.7% of the book figure)",
+      "detail": "The disagreement is named, not smoothed over: the book's balance is steady-state arithmetic with no warm-up. The dynamic model spends the first morning charging 180 kg of water and steel to the design point, and its condenser runs hotter than the book's fixed 40 C on a Texas afternoon. In continuous operation the model reaches 87.7% of the book figure."
+    },
+    {
+      "id": "C-04",
+      "verdict": "AGREE",
+      "book": "Reference sizing: about 40 m2 aperture, 0.67 m2 receiver, about 51 m2 passive condenser",
+      "simulated": "Model parameters: 40 m2 aperture, 40/60 = 0.667 m2 receiver, condenser 81,000 Wh / (8 x 20 K x 10 h) = 50.6 m2",
+      "detail": "Parameter audit against SPEC.md B-46, B-47, B-49."
+    },
+    {
+      "id": "C-05",
+      "verdict": "AGREE",
+      "book": "Tesla valve robust macro-scale diodicity about 2 in the plateau regime",
+      "simulated": "Di(Re=800) = 2.00 in all implementations; reversed-orientation run costs 8.3% of net output",
+      "detail": "The correlation encodes Chapter 4's consensus curve (A-14). The slug-flow inversion the book cites (Di = 0.78) is outside this model's single-phase treatment and is not claimed."
+    },
+    {
+      "id": "C-06",
+      "verdict": "UNTESTABLE",
+      "book": "Phase-directed Tesla-valve routing: steam forward by day, liquid back by night at 95%+ selectivity",
+      "simulated": "Not simulated. The lumped model displays the intended direction state and tests directional resistance only.",
+      "detail": "The book itself labels this a hypothesis for its Chapter 14 experiment. No software result here is evidence for or against it."
+    },
+    {
+      "id": "C-07",
+      "verdict": "AGREE (within model assumptions)",
+      "book": "The sealed loop loses no water; makeup trends to zero",
+      "simulated": "Total water delta 0.000000 kg over every scenario and over the full 8,784-hour Lewisville year",
+      "detail": "This tests the inventory accounting under the sealed-boundary assumption A-22 (makeup, blowdown, samples, fugitives all zero). It is consistency with the assumption, not physical proof that a built loop cannot leak."
+    },
+    {
+      "id": "C-08",
+      "verdict": "AGREE",
+      "book": "Passive condenser area A = Q/(U dT): about 31 m2 for 50 kWh over 10 h; about 51 m2 for the reference duty",
+      "simulated": "50,000/(8 x 20 x 10) = 31.25 m2; 81,000/(8 x 20 x 10) = 50.6 m2",
+      "detail": "Direct sizing-equation check."
+    },
+    {
+      "id": "C-09",
+      "verdict": "AGREE",
+      "book": "No photovoltaics; no battery-dependent night cycle",
+      "simulated": "Architecture audit: the solver, page, and parts list contain no PV or battery component.",
+      "detail": "Checked by code and SPEC review."
+    },
+    {
+      "id": "C-10",
+      "verdict": "UNTESTABLE",
+      "book": "On-site generation skips about 5% transmission and distribution loss",
+      "simulated": "Not simulated: grid delivery and load coincidence are outside version one.",
+      "detail": "Recorded as context, not as a modeled result."
+    },
+    {
+      "id": "C-11",
+      "verdict": "UNTESTABLE",
+      "book": "Fresnel focal spots and home steam temperatures are in demonstrated territory (cited experiments)",
+      "simulated": "Not simulated: this model does not validate other groups' experiments.",
+      "detail": "The citations stand or fall on their own sources."
+    },
+    {
+      "id": "C-12",
+      "verdict": "UNTESTABLE",
+      "book": "If phase routing fails its experiment, conventional check valves are the fallback",
+      "simulated": "Not a simulation claim. The fallback is recorded in SPEC.md.",
+      "detail": "No experiment exists in this software to falsify the routing hypothesis."
+    }
+  ]
+}

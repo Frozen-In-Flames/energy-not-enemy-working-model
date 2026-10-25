@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Energy Not Enemy: The Working Model</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <h1>Energy Not Enemy: The Working Model</h1>
+  <p class="tagline">A working simulation of the solar steam generator described in
+  <em>Energy Not Enemy</em> by Aries Hilton. Sunlight is focused by a Fresnel lens,
+  water becomes steam in a closed loop, the steam turns a turbine and a generator,
+  and at night the steam condenses back to water and comes home.</p>
+  <p class="fidelity"><strong>What this is, plainly:</strong> a lumped-parameter
+  simulation. Real equations, solved live, fed with real measured weather where
+  weather is used. It is not a mesh physics model and it is not a measurement of a
+  built machine. Every number the book states is traced in the specification.
+  Every number the book does not state is listed in the assumption register
+  below and marked as an assumption. Where the simulation and the book disagree,
+  the claims table says so.</p>
+</header>
+
+<div id="caption-fixed" hidden></div>
+
+<div id="titlecard" hidden>
+  <div class="titlecard-inner">
+    <div class="tc-kicker">A presentation of the working model</div>
+    <div class="tc-title">Energy Not Enemy</div>
+    <div class="tc-sub">The Working Model</div>
+    <div class="tc-line">One machine that turns sunlight into electricity with
+    steam, a lens, and a closed loop of water, shown working phase by phase.</div>
+  </div>
+</div>
+
+<main>
+  <section id="stage-section">
+    <div id="stage-wrap">
+      <canvas id="gl" width="960" height="600"></canvas>
+      <div id="clock-chip"><span id="clock-text">Loading data…</span></div>
+      <div id="part-labels"></div>
+      <div id="caption-bar" hidden></div>
+    </div>
+    <div id="stage-controls">
+      <div class="chip-row" id="part-chips">
+        <button data-part="all" class="chip active">Whole plant</button>
+        <button data-part="fresnel" class="chip">Fresnel array</button>
+        <button data-part="receiver" class="chip">Receiver</button>
+        <button data-part="boiler" class="chip">Boiler</button>
+        <button data-part="valve" class="chip">Tesla valve</button>
+        <button data-part="turbine" class="chip">Turbine</button>
+        <button data-part="generator" class="chip">Generator</button>
+        <button data-part="condenser" class="chip">Condenser</button>
+      </div>
+      <label class="inline">Valve cutaway spread
+        <input type="range" id="explode" min="0" max="1" step="0.01" value="0.35">
+      </label>
+      <button id="pulse-btn" type="button">Reverse pressure pulse</button>
+      <span id="pulse-note" class="note"></span>
+    </div>
+    <div id="part-readout" class="panel">
+      <h3 id="part-name">Whole plant</h3>
+      <div id="part-numbers" class="numbers"></div>
+      <p id="part-note" class="note"></p>
+    </div>
+  </section>
+
+  <aside id="side">
+    <div class="panel" id="sim-controls">
+      <h3>Run the day</h3>
+      <div class="row">
+        <button id="play-btn" type="button">Pause</button>
+        <label>Speed
+          <select id="speed">
+            <option value="10">Slow</option>
+            <option value="60">1 hour per minute</option>
+            <option value="240" selected>4 hours per minute</option>
+            <option value="720">12 hours per minute</option>
+          </select>
+        </label>
+      </div>
+      <label class="block">Time of day <span id="scrub-label"></span>
+        <input type="range" id="scrub" min="0" max="479" step="1" value="0">
+      </label>
+      <div class="row">
+        <button id="prev-day" type="button">◀ Day</button>
+        <input type="date" id="date-input">
+        <button id="next-day" type="button">Day ▶</button>
+      </div>
+      <label class="block">Load demand cap: <span id="load-label">5.0 kW</span>
+        <input type="range" id="load" min="0" max="7" step="0.1" value="5">
+      </label>
+      <label class="block">Tesla valve orientation
+        <select id="valve-orient">
+          <option value="forward" selected>Forward (as designed)</option>
+          <option value="reversed">Reversed (control run)</option>
+        </select>
+      </label>
+      <p class="note" id="day-mode-note">Day view runs the selected day plus the day
+      before as a warm-up, so the boiler starts at a realistic temperature. Dates
+      are the dataset's UTC dates. Period figures below come from one continuous
+      run over the whole dataset, so a day opened here can differ from the period
+      table by a few percent: the continuous run remembers every day before it,
+      the day view remembers one.</p>
+    </div>
+
+    <div class="panel" id="phase-panel">
+      <h3>Energy at each phase</h3>
+      <div id="phases"></div>
+    </div>
+
+    <div class="panel" id="totals-panel">
+      <h3>Selected day totals</h3>
+      <div id="totals" class="numbers"></div>
+    </div>
+  </aside>
+
+  <section id="chart-section" class="panel">
+    <h3>Power through the day</h3>
+    <canvas id="power-chart" width="900" height="220"></canvas>
+  </section>
+
+  <section id="city-section" class="panel">
+    <h3>Run this machine anywhere</h3>
+    <p>Pick a place and the app fetches real hourly sunlight and temperature for
+    it, then runs the same machine on that weather. Fetched places are cached on
+    this device and work offline afterward.</p>
+    <div class="row wrap">
+      <input type="text" id="city-search" placeholder="Search a city name">
+      <button id="city-search-btn" type="button">Search</button>
+      <span id="city-results"></span>
+    </div>
+    <div class="row wrap">
+      <label>Latitude <input type="number" id="lat-input" step="0.001" min="-60" max="65"></label>
+      <label>Longitude <input type="number" id="lon-input" step="0.001" min="-180" max="180"></label>
+      <button id="coords-btn" type="button">Use coordinates</button>
+    </div>
+    <div class="chip-row" id="preset-chips"></div>
+    <div class="row wrap">
+      <label>Time span
+        <select id="years-select">
+          <option value="1">One full year</option>
+          <option value="2" selected>Two full years</option>
+        </select>
+      </label>
+      <button id="fetch-btn" type="button">Fetch weather and run</button>
+      <span id="fetch-status" class="note"></span>
+    </div>
+    <div id="progress-wrap" hidden>
+      <progress id="progress" max="100" value="0"></progress>
+      <span id="progress-text"></span>
+    </div>
+    <p id="provenance" class="provenance"></p>
+    <div id="loaded-cities"></div>
+    <div id="comparison"></div>
+  </section>
+
+  <section id="analysis-section" class="panel">
+    <h3>The whole period, understood</h3>
+    <div id="analysis-summary" class="numbers"></div>
+    <h4>Output by hour and month (average net kilowatts)</h4>
+    <canvas id="heatmap" width="900" height="300"></canvas>
+    <h4>Months and seasons</h4>
+    <div id="monthly"></div>
+    <h4>Best, worst, and median days</h4>
+    <div id="extremes" class="row wrap"></div>
+    <p id="weather-effects" class="note"></p>
+  </section>
+
+  <section id="claims-section" class="panel">
+    <h3>Claims check: the book vs the simulation</h3>
+    <p id="claims-counts"></p>
+    <div id="claims-table"></div>
+  </section>
+
+  <section id="assumptions-section" class="panel">
+    <h3>Assumption register</h3>
+    <p>Every value the simulation needs that the book does not state. These are
+    engineering defaults, chosen openly, and each one can be challenged and
+    changed in the solver's parameter list.</p>
+    <div id="assumptions"></div>
+  </section>
+
+  <section id="book-section" class="panel">
+    <h3>The source document</h3>
+    <div class="book-flex">
+      <img id="book-cover" src="../book/Energy-Not-Enemy-cover-v2.jpg"
+           alt="Cover of Energy Not Enemy by Aries Hilton" width="180"
+           onerror="this.style.display='none'">
+      <div>
+        <p><em>Energy Not Enemy</em> by Aries Hilton is the design's source
+        document. The full book is included in this repository's
+        <code>book/</code> folder, free to read there by the author's choice.
+        The strategy is dual-path: free for those who find it in the
+        repository, paid for those who buy it through storefronts.</p>
+        <p>The book is © Aries Hilton, all rights reserved. It is not covered
+        by this repository's software license and is not licensed for resale or
+        redistribution. The software license applies to the simulation code
+        only. See <code>book/README.md</code> in the repository.</p>
+        <p><a href="https://github.com/Frozen-In-Flames/energy-not-enemy-working-model/tree/main/book">Read the book in the repository</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>Solver route: the C++ solver core is the reference implementation. No
+  WebAssembly toolchain (clang, emscripten, wasm-ld) was available on the build
+  machine, so this page runs a hand-written JavaScript port of the same model.
+  The port is held to the C++ core and to an independent Python oracle by a
+  three-way parity battery, and all three produce identical summary digests on
+  the reference scenarios. Full numbers live in <code>results/</code> in the
+  repository.</p>
+  <p>Weather data: Open-Meteo Archive (ERA5-based) is the primary source,
+  verified to answer browser requests directly. NASA POWER hourly is the
+  documented fallback. Full provenance is in <code>data/PROVENANCE.md</code>
+  and is shown next to every city's results.</p>
+  <p>This page works fully offline once a city's data has been loaded or
+  cached. No part of the simulation or the rendering uses a third-party
+  library.</p>
+</footer>
+
+<script src="solver.js"></script>
+<script src="gl.js"></script>
+<script src="weather.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
