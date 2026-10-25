@@ -1,0 +1,28 @@
+{
+  "dataset": "lewisville-tx-2024-open-meteo",
+  "net_kwh": 9286.1185,
+  "gross_kwh": 9427.1664,
+  "solar_kwh_on_aperture": 85038.355,
+  "peak_net_kw": 4.8883,
+  "capacity_factor_nameplate_7kw": 0.151,
+  "monthly_net_kwh": [
+    661.06,
+    648.66,
+    738.31,
+    628.37,
+    691.26,
+    913.79,
+    914.91,
+    999.68,
+    816.73,
+    984.72,
+    679.05,
+    609.59
+  ],
+  "best_day_kwh": 40.96,
+  "worst_day_kwh": 0.0,
+  "median_day_kwh": 30.4,
+  "days_with_zero_output": 16,
+  "balance_residual_kwh": 496.0621,
+  "water_delta_kg": 0.0
+}

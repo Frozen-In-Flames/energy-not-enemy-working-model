@@ -1,0 +1,586 @@
+{
+  "implementations": [
+    "cpp",
+    "python-oracle",
+    "js-port"
+  ],
+  "solver_route": "JS port + three-way parity (no clang/emscripten/wasm-ld on the build machine; g++ present)",
+  "checks": [
+    {
+      "name": "sat-temp-1atm:cpp",
+      "pass": true,
+      "detail": "Tsat(1 atm) = 100.000 C (tolerance 0.5 C)"
+    },
+    {
+      "name": "sat-p-250c:cpp",
+      "pass": true,
+      "detail": "Psat(250 C) = 3.9261 MPa vs steam-table 3.973 MPa (tolerance 2%)"
+    },
+    {
+      "name": "sat-temp-1atm:python",
+      "pass": true,
+      "detail": "Tsat(1 atm) = 100.000 C (tolerance 0.5 C)"
+    },
+    {
+      "name": "sat-p-250c:python",
+      "pass": true,
+      "detail": "Psat(250 C) = 3.9261 MPa vs steam-table 3.973 MPa (tolerance 2%)"
+    },
+    {
+      "name": "sat-temp-1atm:js",
+      "pass": true,
+      "detail": "Tsat(1 atm) = 100.000 C (tolerance 0.5 C)"
+    },
+    {
+      "name": "sat-p-250c:js",
+      "pass": true,
+      "detail": "Psat(250 C) = 3.9261 MPa vs steam-table 3.973 MPa (tolerance 2%)"
+    },
+    {
+      "name": "solar-noon:python",
+      "pass": true,
+      "detail": "max elevation Jun 21 = 80.41 deg vs reference 80.39 (tolerance 1.0)"
+    },
+    {
+      "name": "solar-noon:js",
+      "pass": true,
+      "detail": "max elevation Jun 21 = 80.41 deg vs reference 80.39 (tolerance 1.0)"
+    },
+    {
+      "name": "parity:summer-clear",
+      "pass": true,
+      "detail": "worst spread 0.0000% on "
+    },
+    {
+      "name": "balance:summer-clear",
+      "pass": true,
+      "detail": "residual 0.9592 kWh, tolerance 6.10 kWh (2% of solar or 1 kWh)"
+    },
+    {
+      "name": "water:summer-clear",
+      "pass": true,
+      "detail": "total water delta -0.00e+00 kg over the run"
+    },
+    {
+      "name": "parity:winter-clear",
+      "pass": true,
+      "detail": "worst spread 0.0000% on "
+    },
+    {
+      "name": "balance:winter-clear",
+      "pass": true,
+      "detail": "residual -0.0000 kWh, tolerance 2.45 kWh (2% of solar or 1 kWh)"
+    },
+    {
+      "name": "water:winter-clear",
+      "pass": true,
+      "detail": "total water delta 0.00e+00 kg over the run"
+    },
+    {
+      "name": "parity:night-only",
+      "pass": true,
+      "detail": "worst spread 0.0000% on "
+    },
+    {
+      "name": "negative-control:night-only",
+      "pass": true,
+      "detail": "zero irradiance -> zero electrical output in all implementations"
+    },
+    {
+      "name": "balance:night-only",
+      "pass": true,
+      "detail": "residual 0.0000 kWh, tolerance 1.00 kWh (2% of solar or 1 kWh)"
+    },
+    {
+      "name": "water:night-only",
+      "pass": true,
+      "detail": "total water delta 0.00e+00 kg over the run"
+    },
+    {
+      "name": "parity:zero-control",
+      "pass": true,
+      "detail": "worst spread 0.0000% on "
+    },
+    {
+      "name": "negative-control:zero-control",
+      "pass": true,
+      "detail": "zero irradiance -> zero electrical output in all implementations"
+    },
+    {
+      "name": "balance:zero-control",
+      "pass": true,
+      "detail": "residual 0.0000 kWh, tolerance 1.00 kWh (2% of solar or 1 kWh)"
+    },
+    {
+      "name": "water:zero-control",
+      "pass": true,
+      "detail": "total water delta 0.00e+00 kg over the run"
+    },
+    {
+      "name": "parity:book-design-day",
+      "pass": true,
+      "detail": "worst spread 0.0000% on "
+    },
+    {
+      "name": "balance:book-design-day",
+      "pass": true,
+      "detail": "residual 0.6435 kWh, tolerance 4.40 kWh (2% of solar or 1 kWh)"
+    },
+    {
+      "name": "water:book-design-day",
+      "pass": true,
+      "detail": "total water delta 0.00e+00 kg over the run"
+    },
+    {
+      "name": "parity:summer-clear-reversed",
+      "pass": true,
+      "detail": "worst spread 0.0000% on "
+    },
+    {
+      "name": "balance:summer-clear-reversed",
+      "pass": true,
+      "detail": "residual 0.8371 kWh, tolerance 6.10 kWh (2% of solar or 1 kWh)"
+    },
+    {
+      "name": "water:summer-clear-reversed",
+      "pass": true,
+      "detail": "total water delta -0.00e+00 kg over the run"
+    },
+    {
+      "name": "reversed-valve-cost",
+      "pass": true,
+      "detail": "forward net 21.19 kWh vs reversed net 19.43 kWh (8.3% penalty)"
+    },
+    {
+      "name": "determinism:cpp",
+      "pass": true,
+      "detail": "digest 3ef141baac2c48d7 stable across runs"
+    },
+    {
+      "name": "determinism:python",
+      "pass": true,
+      "detail": "digest 3ef141baac2c48d7 stable across runs"
+    },
+    {
+      "name": "determinism:js",
+      "pass": true,
+      "detail": "digest 3ef141baac2c48d7 stable across runs"
+    },
+    {
+      "name": "digest-agreement",
+      "pass": true,
+      "detail": "all three implementations produce the identical summary digest 3ef141baac2c48d7"
+    },
+    {
+      "name": "design-day-continuous",
+      "pass": true,
+      "detail": "cold-start day 12.12 kWh, continuous day 3 24.20 kWh"
+    },
+    {
+      "name": "design-day-parity",
+      "pass": true,
+      "detail": "day-3 net spread across implementations 0.0001 kWh"
+    },
+    {
+      "name": "parity:annual-lewisville-2024",
+      "pass": true,
+      "detail": "worst spread 0.0021% on condenser_kwh"
+    },
+    {
+      "name": "annual-balance",
+      "pass": true,
+      "detail": "annual residual 496.06 kWh on 85038 kWh solar (0.58%)"
+    },
+    {
+      "name": "annual-water",
+      "pass": true,
+      "detail": "annual water delta 0.00e+00 kg"
+    }
+  ],
+  "checks_passed": 38,
+  "checks_total": 38,
+  "parity_worst_relative_spread": {
+    "summer-clear": 0.0,
+    "winter-clear": 0.0,
+    "night-only": 0.0,
+    "zero-control": 0.0,
+    "book-design-day": 0.0,
+    "summer-clear-reversed": 0.0
+  },
+  "annual_parity_worst_relative_spread": 2.053509565339672e-05,
+  "summaries": {
+    "summer-clear": {
+      "cpp": {
+        "scenario": "summer-clear",
+        "load_kw": 5.0,
+        "reversed": false,
+        "hours": 24.0,
+        "solar_kwh": 304.9895,
+        "heat_kwh": 153.2572,
+        "gross_kwh": 21.5087,
+        "net_kwh": 21.1878,
+        "condenser_kwh": 71.6105,
+        "peak_net_kw": 4.8479,
+        "water_start_kg": 250.0,
+        "water_end_kg": 250.0,
+        "water_delta_kg": -0.0,
+        "balance_residual_kwh": 0.9592,
+        "digest": "3ef141baac2c48d7"
+      },
+      "python": {
+        "scenario": "summer-clear",
+        "load_kw": 5.0,
+        "reversed": false,
+        "hours": 24.0,
+        "solar_kwh": 304.9895,
+        "heat_kwh": 153.2572,
+        "gross_kwh": 21.5087,
+        "net_kwh": 21.1878,
+        "condenser_kwh": 71.6105,
+        "peak_net_kw": 4.8479,
+        "water_start_kg": 250.0,
+        "water_end_kg": 250.0,
+        "water_delta_kg": -0.0,
+        "balance_residual_kwh": 0.9592,
+        "digest": "3ef141baac2c48d7"
+      },
+      "js": {
+        "scenario": "summer-clear",
+        "load_kw": 5,
+        "reversed": false,
+        "hours": 24,
+        "solar_kwh": 304.9895,
+        "heat_kwh": 153.2572,
+        "gross_kwh": 21.5087,
+        "net_kwh": 21.1878,
+        "condenser_kwh": 71.6105,
+        "peak_net_kw": 4.8479,
+        "water_start_kg": 250,
+        "water_end_kg": 250,
+        "water_delta_kg": 0,
+        "balance_residual_kwh": 0.9592,
+        "digest": "3ef141baac2c48d7"
+      }
+    },
+    "winter-clear": {
+      "cpp": {
+        "scenario": "winter-clear",
+        "load_kw": 5.0,
+        "reversed": false,
+        "hours": 24.0,
+        "solar_kwh": 122.4334,
+        "heat_kwh": 61.5228,
+        "gross_kwh": 0.0,
+        "net_kwh": 0.0,
+        "condenser_kwh": 0.0,
+        "peak_net_kw": 0.0,
+        "water_start_kg": 250.0,
+        "water_end_kg": 250.0,
+        "water_delta_kg": 0.0,
+        "balance_residual_kwh": -0.0,
+        "digest": "96486acaa73eb19d"
+      },
+      "python": {
+        "scenario": "winter-clear",
+        "load_kw": 5.0,
+        "reversed": false,
+        "hours": 24.0,
+        "solar_kwh": 122.4334,
+        "heat_kwh": 61.5228,
+        "gross_kwh": 0.0,
+        "net_kwh": 0.0,
+        "condenser_kwh": 0.0,
+        "peak_net_kw": 0.0,
+        "water_start_kg": 250.0,
+        "water_end_kg": 250.0,
+        "water_delta_kg": 0.0,
+        "balance_residual_kwh": -0.0,
+        "digest": "96486acaa73eb19d"
+      },
+      "js": {
+        "scenario": "winter-clear",
+        "load_kw": 5,
+        "reversed": false,
+        "hours": 24,
+        "solar_kwh": 122.4334,
+        "heat_kwh": 61.5228,
+        "gross_kwh": 0,
+        "net_kwh": 0,
+        "condenser_kwh": 0,
+        "peak_net_kw": 0,
+        "water_start_kg": 250,
+        "water_end_kg": 250,
+        "water_delta_kg": 0,
+        "balance_residual_kwh": 0,
+        "digest": "96486acaa73eb19d"
+      }
+    },
+    "night-only": {
+      "cpp": {
+        "scenario": "night-only",
+        "load_kw": 5.0,
+        "reversed": false,
+        "hours": 24.0,
+        "solar_kwh": 0.0,
+        "heat_kwh": 0.0,
+        "gross_kwh": 0.0,
+        "net_kwh": 0.0,
+        "condenser_kwh": 0.0,
+        "peak_net_kw": 0.0,
+        "water_start_kg": 250.0,
+        "water_end_kg": 250.0,
+        "water_delta_kg": 0.0,
+        "balance_residual_kwh": 0.0,
+        "digest": "d4f1f0cc45afc753"
+      },
+      "python": {
+        "scenario": "night-only",
+        "load_kw": 5.0,
+        "reversed": false,
+        "hours": 24.0,
+        "solar_kwh": 0.0,
+        "heat_kwh": 0.0,
+        "gross_kwh": 0.0,
+        "net_kwh": 0.0,
+        "condenser_kwh": 0.0,
+        "peak_net_kw": 0.0,
+        "water_start_kg": 250.0,
+        "water_end_kg": 250.0,
+        "water_delta_kg": 0.0,
+        "balance_residual_kwh": 0.0,
+        "digest": "d4f1f0cc45afc753"
+      },
+      "js": {
+        "scenario": "night-only",
+        "load_kw": 5,
+        "reversed": false,
+        "hours": 24,
+        "solar_kwh": 0,
+        "heat_kwh": 0,
+        "gross_kwh": 0,
+        "net_kwh": 0,
+        "condenser_kwh": 0,
+        "peak_net_kw": 0,
+        "water_start_kg": 250,
+        "water_end_kg": 250,
+        "water_delta_kg": 0,
+        "balance_residual_kwh": 0,
+        "digest": "d4f1f0cc45afc753"
+      }
+    },
+    "zero-control": {
+      "cpp": {
+        "scenario": "zero-control",
+        "load_kw": 5.0,
+        "reversed": false,
+        "hours": 24.0,
+        "solar_kwh": 0.0,
+        "heat_kwh": 0.0,
+        "gross_kwh": 0.0,
+        "net_kwh": 0.0,
+        "condenser_kwh": 0.0,
+        "peak_net_kw": 0.0,
+        "water_start_kg": 250.0,
+        "water_end_kg": 250.0,
+        "water_delta_kg": 0.0,
+        "balance_residual_kwh": 0.0,
+        "digest": "bfb9713ecb1676d8"
+      },
+      "python": {
+        "scenario": "zero-control",
+        "load_kw": 5.0,
+        "reversed": false,
+        "hours": 24.0,
+        "solar_kwh": 0.0,
+        "heat_kwh": 0.0,
+        "gross_kwh": 0.0,
+        "net_kwh": 0.0,
+        "condenser_kwh": 0.0,
+        "peak_net_kw": 0.0,
+        "water_start_kg": 250.0,
+        "water_end_kg": 250.0,
+        "water_delta_kg": 0.0,
+        "balance_residual_kwh": 0.0,
+        "digest": "bfb9713ecb1676d8"
+      },
+      "js": {
+        "scenario": "zero-control",
+        "load_kw": 5,
+        "reversed": false,
+        "hours": 24,
+        "solar_kwh": 0,
+        "heat_kwh": 0,
+        "gross_kwh": 0,
+        "net_kwh": 0,
+        "condenser_kwh": 0,
+        "peak_net_kw": 0,
+        "water_start_kg": 250,
+        "water_end_kg": 250,
+        "water_delta_kg": 0,
+        "balance_residual_kwh": 0,
+        "digest": "bfb9713ecb1676d8"
+      }
+    },
+    "book-design-day": {
+      "cpp": {
+        "scenario": "book-design-day",
+        "load_kw": 5.0,
+        "reversed": false,
+        "hours": 24.0,
+        "solar_kwh": 220.0,
+        "heat_kwh": 110.55,
+        "gross_kwh": 12.2892,
+        "net_kwh": 12.1163,
+        "condenser_kwh": 37.628,
+        "peak_net_kw": 4.8565,
+        "water_start_kg": 250.0,
+        "water_end_kg": 250.0,
+        "water_delta_kg": 0.0,
+        "balance_residual_kwh": 0.6435,
+        "digest": "0d1c54c355854317"
+      },
+      "python": {
+        "scenario": "book-design-day",
+        "load_kw": 5.0,
+        "reversed": false,
+        "hours": 24.0,
+        "solar_kwh": 220.0,
+        "heat_kwh": 110.55,
+        "gross_kwh": 12.2892,
+        "net_kwh": 12.1163,
+        "condenser_kwh": 37.628,
+        "peak_net_kw": 4.8565,
+        "water_start_kg": 250.0,
+        "water_end_kg": 250.0,
+        "water_delta_kg": 0.0,
+        "balance_residual_kwh": 0.6435,
+        "digest": "0d1c54c355854317"
+      },
+      "js": {
+        "scenario": "book-design-day",
+        "load_kw": 5,
+        "reversed": false,
+        "hours": 24,
+        "solar_kwh": 220,
+        "heat_kwh": 110.55,
+        "gross_kwh": 12.2892,
+        "net_kwh": 12.1163,
+        "condenser_kwh": 37.628,
+        "peak_net_kw": 4.8565,
+        "water_start_kg": 250,
+        "water_end_kg": 250,
+        "water_delta_kg": 0,
+        "balance_residual_kwh": 0.6435,
+        "digest": "0d1c54c355854317"
+      }
+    },
+    "summer-clear-reversed": {
+      "cpp": {
+        "scenario": "summer-clear",
+        "load_kw": 5.0,
+        "reversed": true,
+        "hours": 24.0,
+        "solar_kwh": 304.9895,
+        "heat_kwh": 153.2572,
+        "gross_kwh": 19.735,
+        "net_kwh": 19.432,
+        "condenser_kwh": 73.7928,
+        "peak_net_kw": 4.7559,
+        "water_start_kg": 250.0,
+        "water_end_kg": 250.0,
+        "water_delta_kg": -0.0,
+        "balance_residual_kwh": 0.8371,
+        "digest": "483aa817fa18a87c"
+      },
+      "python": {
+        "scenario": "summer-clear",
+        "load_kw": 5.0,
+        "reversed": true,
+        "hours": 24.0,
+        "solar_kwh": 304.9895,
+        "heat_kwh": 153.2572,
+        "gross_kwh": 19.735,
+        "net_kwh": 19.432,
+        "condenser_kwh": 73.7928,
+        "peak_net_kw": 4.7559,
+        "water_start_kg": 250.0,
+        "water_end_kg": 250.0,
+        "water_delta_kg": -0.0,
+        "balance_residual_kwh": 0.8371,
+        "digest": "483aa817fa18a87c"
+      },
+      "js": {
+        "scenario": "summer-clear",
+        "load_kw": 5,
+        "reversed": true,
+        "hours": 24,
+        "solar_kwh": 304.9895,
+        "heat_kwh": 153.2572,
+        "gross_kwh": 19.735,
+        "net_kwh": 19.432,
+        "condenser_kwh": 73.7928,
+        "peak_net_kw": 4.7559,
+        "water_start_kg": 250,
+        "water_end_kg": 250,
+        "water_delta_kg": 0,
+        "balance_residual_kwh": 0.8371,
+        "digest": "483aa817fa18a87c"
+      }
+    }
+  },
+  "design_day_3day_net_kwh": {
+    "cpp": [
+      12.1163,
+      24.4426,
+      24.2003
+    ],
+    "python": [
+      12.116272209666302,
+      24.442676928084968,
+      24.200232426857255
+    ],
+    "js": [
+      12.116272209666302,
+      24.442676928084968,
+      24.200232426857255
+    ]
+  },
+  "annual_lewisville_2024": {
+    "dataset": "lewisville-tx-2024-open-meteo",
+    "net_kwh": 9286.1185,
+    "gross_kwh": 9427.1664,
+    "solar_kwh_on_aperture": 85038.355,
+    "peak_net_kw": 4.8883,
+    "capacity_factor_nameplate_7kw": 0.151,
+    "monthly_net_kwh": [
+      661.06,
+      648.66,
+      738.31,
+      628.37,
+      691.26,
+      913.79,
+      914.91,
+      999.68,
+      816.73,
+      984.72,
+      679.05,
+      609.59
+    ],
+    "best_day_kwh": 40.96,
+    "worst_day_kwh": 0.0,
+    "median_day_kwh": 30.4,
+    "days_with_zero_output": 16,
+    "balance_residual_kwh": 496.0621,
+    "water_delta_kg": 0.0
+  },
+  "cycle": {
+    "ideal_eff": 0.3673,
+    "realistic_eff": 0.2746,
+    "pessimistic_eff": 0.2003,
+    "h3": 3112.75,
+    "h4s": 2027.11,
+    "sat_t_at_1atm_c": 100.0,
+    "sat_p_at_250c_mpa": 3.9261,
+    "di_at_re800": 2.0
+  }
+}
