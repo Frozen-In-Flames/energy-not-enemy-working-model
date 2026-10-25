@@ -1,0 +1,22 @@
+{
+  "dataset_id": "lewisville-tx-2024-open-meteo-v1",
+  "place": "Lewisville, Texas, United States",
+  "requested_latitude": 33.046,
+  "requested_longitude": -96.994,
+  "returned_latitude": 33.07557,
+  "returned_longitude": -96.96561,
+  "returned_elevation_m": 159.0,
+  "source": "Open-Meteo Archive API (ERA5-based historical weather data)",
+  "endpoint": "https://archive-api.open-meteo.com/v1/archive",
+  "period": "2024-01-01T00:00Z to 2024-12-31T23:00Z",
+  "timezone": "GMT (UTC timestamps)",
+  "variables": [
+    "direct_normal_irradiance (W/m\u00b2)",
+    "temperature_2m (\u00b0C)"
+  ],
+  "hours": 8784,
+  "annual_direct_normal_irradiation_kwh_m2": 2190.218,
+  "mean_ambient_temperature_c": 20.117,
+  "fetched": "2026-10-24",
+  "license_note": "Bundled as measured input data with this provenance. The simulation code license does not change the data provider terms."
+}
