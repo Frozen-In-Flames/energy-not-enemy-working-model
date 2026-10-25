@@ -176,3 +176,8 @@ generate about 13 kWh each.
    fabrication drawing set.
 10. The demo video has captions and a narration script but no recorded
     voice track, because the build environment has no speech synthesis.
+11. The demo video's city segment shows the bundled city rather than a
+    live-fetched one, because the recording browser had no route to the
+    public internet. The page's live fetch is unaffected; it was verified
+    at the endpoint level and works wherever the browser itself can reach
+    the archive, including the deployed page.
