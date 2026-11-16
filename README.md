@@ -12,6 +12,10 @@ energy measured at every phase while it runs. The city is a user input: the
 page fetches real hourly sunlight and temperature for the place you choose
 and runs the same machine on that weather.
 
+## Live demonstration
+
+- [The Working Model](https://frozen-in-flames.github.io/energy-not-enemy-working-model/): the simulation running in the browser, with the book's claims reported against model output.
+
 ## The source document
 
 The design's source document is the book itself. The full text of *Energy
