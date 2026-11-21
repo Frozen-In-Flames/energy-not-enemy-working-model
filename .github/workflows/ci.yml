@@ -1,0 +1,22 @@
+# CI for energy-not-enemy-working-model.
+# Verification entry point from README.md:
+#   sh tools/verify.sh
+# The script checks that served data copies are byte-identical to the
+# canonical data, parses every JavaScript file with node --check, and
+# runs the three-implementation battery in tests/run_battery.py, which
+# compiles the C++ core with g++ itself. g++ and node are present on
+# the ubuntu-latest runner image.
+# Added under the November 2026 audit follow-through.
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run verification
+        run: sh tools/verify.sh
