@@ -1,0 +1,43 @@
+C-03: why the model's number and the book's number differ
+==========================================================
+
+The claim (SPEC.md, C-03): the reference home design day carries
+220 kWh of beam energy on the aperture to 27.6 kWh of net
+electricity with a passive condenser, about 92% of a 30 kWh/day
+demand. That figure is the book's, from Energy Not Enemy.
+
+What the model produces: the dynamic solver's continuous-operation
+day reaches 24.2 kWh net, about 88% of the book figure. The
+regression battery records claim C-03 as PARTIAL, an expected
+difference, and it is deliberately not tuned away.
+
+Why they differ: the two numbers are computed under different
+assumptions, and both are honest under their own.
+
+1. The book's balance is steady-state arithmetic. It prices the
+   design day as if the plant were already at its operating point,
+   with no warm-up cost.
+
+2. The dynamic model starts cold. On the first morning it spends
+   part of the incoming energy charging 180 kg of water and steel
+   up to the design point before net production matches the
+   steady-state rate. That warm-up energy is real, and the book's
+   arithmetic does not charge for it.
+
+3. The book's condenser is a fixed 40 C boundary. The dynamic
+   model's passive condenser runs hotter than 40 C on a Texas
+   afternoon, which lowers the cycle efficiency for those hours.
+
+So the gap is not an error in either number. It is the measured
+distance between a steady-state design figure and a dynamic
+simulation of the same plant on the same design day. The battery
+(tests/run_battery.py) prints both figures and the percentage on
+every run, and results/claims-check.json carries the PARTIAL
+verdict, so the difference stays visible instead of being smoothed
+over.
+
+What would close the gap: nothing in the model needs fixing. A
+reader comparing the book to the model should read 27.6 kWh as the
+steady-state design value and 24.2 kWh as the dynamic
+continuous-operation value, with the cold-start and condenser
+effects above accounting for the difference.
